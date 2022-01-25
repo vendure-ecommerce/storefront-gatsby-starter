@@ -4,7 +4,7 @@
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "http://localhost:8000/__graphql",
+        "url": "https://demo.vendure.io/shop-api",
         "headers": {
           "user-agent": "JS GraphQL"
         },

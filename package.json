@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@tailwindcss/forms": "^0.4.0",
     "gatsby": "^4.5.4",
     "gatsby-plugin-gatsby-cloud": "^4.5.2",
     "gatsby-plugin-image": "^2.5.2",
@@ -15,9 +16,12 @@
     "gatsby-source-filesystem": "^4.5.2",
     "gatsby-source-graphql": "^4.5.2",
     "gatsby-transformer-sharp": "^4.5.0",
+    "graphql": "^15.8.0",
+    "query-string": "^7.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "urql": "^2.0.6"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",

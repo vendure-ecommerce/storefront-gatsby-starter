@@ -5,3 +5,14 @@
  */
 
 import './src/styles/global.css'
+import * as React from "react"
+import { createClient, Provider } from "urql"
+
+const client = createClient({
+  url: "https://demo.vendure.io/shop-api",
+})
+
+
+export const wrapRootElement = ({ element }) => (
+  <Provider value={client}>{element}</Provider>
+)

@@ -44,6 +44,7 @@ const IndexPage = () => {
             alt=""
             className="w-full h-full object-center object-cover"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-purple-800 to-indigo-900 mix-blend-multiply" />
         </div>
         <div
           aria-hidden="true"

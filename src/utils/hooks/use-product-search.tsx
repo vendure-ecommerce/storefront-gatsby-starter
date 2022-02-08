@@ -49,10 +49,16 @@ export interface SearchInput {
   term?: string
 }
 
-export function useProductSearch(term: string) {
-  const skip = 0;
-  const take = 20;
-  const [query, setQuery] = useState(term);
+export function useProductSearch({
+  term,
+  collectionSlug,
+}: {
+  term?: string
+  collectionSlug?: string
+}) {
+  const skip = 0
+  const take = 20
+  const [query, setQuery] = useState(term)
   const [initialRender, setInitialRender] = useState(true)
 
   const [result] = useQuery({
@@ -60,6 +66,7 @@ export function useProductSearch(term: string) {
     variables: {
       input: {
         groupByProduct: true,
+        collectionSlug,
         skip,
         take,
         term,

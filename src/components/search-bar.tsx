@@ -4,7 +4,7 @@ import * as queryString from "query-string"
 import { navigate } from "gatsby"
 
 export function SearchBar() {
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState(new URLSearchParams(location.search).get('q') ?? '')
     const onInput = (value: string) => {
       setQuery(value);
       if (value === '') {
@@ -17,7 +17,9 @@ export function SearchBar() {
   }
   return (
     <form onSubmit={onSubmit}>
-      <input type='search' onInput={e => onInput((e.target as HTMLInputElement).value)}
+      <input type='search'
+             value={query}
+             placeholder='Search' onInput={e => onInput((e.target as HTMLInputElement).value)}
         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
       />
     </form>

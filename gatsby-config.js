@@ -1,10 +1,13 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 module.exports = {
     siteMetadata: {
-        title: `Gatsby Vendure Starter`,
+        title: `Vendure Gatsby Starter`,
         description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
         author: `@vendure_io`,
         siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
-        apiHost: 'https://demo.vendure.io'
+        apiHost: process.env.VENDURE_SHOP_URL
     },
     plugins: [
         'gatsby-plugin-postcss',
@@ -44,7 +47,7 @@ module.exports = {
                 // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
                 fieldName: "vendure",
                 // Url to query from
-                url: "https://demo.vendure.io/shop-api",
+                url: process.env.VENDURE_SHOP_API_URL
             },
         },
     ],

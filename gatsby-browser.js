@@ -9,7 +9,7 @@ import * as React from "react"
 import { createClient, Provider } from "urql"
 
 const client = createClient({
-  url: "https://demo.vendure.io/shop-api",
+  url: process.env.VENDURE_SHOP_API_URL,
 })
 
 

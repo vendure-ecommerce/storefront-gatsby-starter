@@ -4,7 +4,11 @@ import * as queryString from "query-string"
 import { navigate } from "gatsby"
 
 export function SearchBar() {
-  const [query, setQuery] = useState(new URLSearchParams(location.search).get('q') ?? '')
+  let initialQuery = '';
+  if (typeof window !== 'undefined') {
+    initialQuery = new URLSearchParams(location.search).get('q') ?? '';
+  }
+  const [query, setQuery] = useState(initialQuery)
     const onInput = (value: string) => {
       setQuery(value);
       if (value === '') {

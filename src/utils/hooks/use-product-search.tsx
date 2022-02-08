@@ -75,22 +75,6 @@ export function useProductSearch({
     },
   })
 
-  // useEffect(() => {
-  //   const qs = queryString.stringify({
-  //     // Don't show if falsy
-  //     q: term || undefined,
-  //   })
-  //
-  //   console.log({ term });
-  //
-  //   const url = new URL(window.location.href)
-  //   url.search = qs
-  //   url.hash = ""
-  //   window.history.replaceState({}, null, url.toString())
-  //   // setQuery(query)
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // })
-
   const fetchPreviousPage = () => {
     // when we go back we want all products before the first one of our array
     const previousCursor = result.data.products.edges[0].cursor

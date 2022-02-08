@@ -1,14 +1,10 @@
 import * as React from "react"
-import { Link } from "gatsby"
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
+import { ChangeEvent, useState } from "react"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import { ProductCard } from "../components/product-card"
 import { Breadcrumbs } from "../components/breadcrumbs"
-import { ChangeEvent, SyntheticEvent, useState } from "react"
-import { StarIcon } from "@heroicons/react/solid"
-import { HeartIcon, MinusSmIcon, PlusSmIcon } from "@heroicons/react/outline"
+import { HeartIcon } from "@heroicons/react/outline"
 import { formatPrice } from "../utils/format-price"
 
 function classNames(...classes) {
@@ -32,7 +28,11 @@ const ProductPage = ({ pageContext: { product } }) => {
         <h2 className="text-5xl font-light tracking-tight text-gray-900 my-8">
           {product.name}
         </h2>
-        <Breadcrumbs items={product.collections[product.collections.length - 1].breadcrumbs}></Breadcrumbs>
+        <Breadcrumbs
+          items={
+            product.collections[product.collections.length - 1].breadcrumbs
+          }
+        ></Breadcrumbs>
         <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start mt-4 md:mt-12">
           {/* Image gallery */}
           <div className="w-full max-w-2xl mx-auto sm:block lg:max-w-none">

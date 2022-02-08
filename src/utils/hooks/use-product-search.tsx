@@ -10,6 +10,7 @@ export const ProductsQuery = /* GraphQL */ `
         slug
         productName
         description
+        currencyCode
         priceWithTax {
           ... on PriceRange {
             min

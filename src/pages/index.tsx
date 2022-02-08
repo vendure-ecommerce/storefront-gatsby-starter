@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql, Link, useStaticQuery } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -26,7 +26,7 @@ const IndexPage = () => {
               preview
               imageFile {
                 childImageSharp {
-                  gatsbyImageData(width: 300 height: 300 quality: 85)
+                  gatsbyImageData(width: 300, height: 300, quality: 85)
                 }
               }
             }
@@ -35,33 +35,40 @@ const IndexPage = () => {
       }
     }
   `)
-  const heroBg = `${data.site.siteMetadata.apiHost}/assets/preview/40/abel-y-costa-716024-unsplash__preview.jpg?preset=large`
   const collections = data.vendure.collections.items
   return (
     <Layout>
       <Seo title="Home" />
       {/* Hero section */}
-      <div className="relative bg-gray-900">
+      <div className="relative">
         {/* Decorative image and overlay */}
         <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-          <img
-            src={heroBg}
-            alt=""
-            className="w-full h-full object-center object-cover"
-          />
           <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-purple-800 to-indigo-900 mix-blend-multiply" />
         </div>
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-gray-900 opacity-50"
         />
-
         <div className="relative max-w-3xl mx-auto py-32 px-6 flex flex-col items-center text-center sm:py-64 lg:px-0">
           <h1 className="text-5xl font-light tracking-tight text-white lg:text-6xl">
             Vendure Gatsby Starter
           </h1>
           <p className="mt-4 text-xl text-white">
-            A Vendure storefront starter built with Gatsby.
+            A{" "}
+            <a
+              href="https://www.vendure.io"
+              className="text-blue-300 hover:text-blue-500"
+            >
+              Vendure
+            </a>{" "}
+            storefront starter built with{" "}
+            <a
+              href="https://www.gatsbyjs.com/"
+              className="text-purple-300 hover:text-purple-500"
+            >
+              Gatsby
+            </a>
+            .
           </p>
         </div>
       </div>

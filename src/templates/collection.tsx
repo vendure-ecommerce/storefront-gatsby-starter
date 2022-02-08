@@ -20,7 +20,7 @@ const CollectionPage = ({
       {childCollections.length ? (
         <div className="max-w-2xl mx-auto px-4 py-16 sm:py-16 lg:max-w-none">
           <h2 className="text-2xl font-light text-gray-900">Collections</h2>
-          <div className="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6">
+          <div className="mt-6 space-y-12 lg:space-y-0 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
             {childCollections.map(child => (
               <CollectionCard collection={child}></CollectionCard>
             ))}

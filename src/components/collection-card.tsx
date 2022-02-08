@@ -1,8 +1,10 @@
 import { Link } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import * as React from "react"
 import { formatPrice } from "../utils/format-price"
 
 export function CollectionCard({ collection }: any) {
+  const image = getImage(collection.featuredAsset.imageFile);
   return (
     <Link
       to={"/collection/" + collection.slug}
@@ -10,11 +12,13 @@ export function CollectionCard({ collection }: any) {
       className="relative rounded-lg overflow-hidden hover:opacity-75 xl:w-auto"
     >
       <span aria-hidden="true" className="">
-        <img
-          src={collection.featuredAsset.preview + "?w=300&h=300"}
-          alt=""
-          className="w-full h-full object-center object-cover"
-        />
+        <div className="w-full h-full object-center object-cover">
+          <GatsbyImage
+            image={image}
+            alt={collection.name}
+            className="w-full h-full object-center object-cover"
+          />
+        </div>
       </span>
       <span
         aria-hidden="true"

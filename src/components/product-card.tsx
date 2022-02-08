@@ -1,21 +1,25 @@
-import { Link } from "gatsby";
+import { Link } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import * as React from "react"
-import { formatPrice } from '../utils/format-price';
+import { formatPrice } from "../utils/format-price"
 
 export function ProductCard({ item }: any) {
+  const image = getImage(item.productAsset.imageFile)
   return (
     <div key={item.slug} className="group relative">
       <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75">
-        <img
-          src={item.productAsset.preview + '?w=300&h=300'}
-          alt={item.productName}
-          className="w-full h-full object-center object-cover lg:w-full lg:h-full"
-        />
+        <div className="w-full h-full object-center object-cover lg:w-full lg:h-full">
+          <GatsbyImage
+            image={image}
+            alt={item.productName}
+            className="w-full h-full object-center object-cover"
+          />
+        </div>
       </div>
       <div className="mt-4 flex justify-between">
         <div>
           <h3 className="text-sm text-gray-700">
-            <Link to={'/product/' + item.slug}>
+            <Link to={"/product/" + item.slug}>
               <span aria-hidden="true" className="absolute inset-0" />
               {item.productName}
             </Link>

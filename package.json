@@ -14,7 +14,7 @@
     "gatsby-plugin-offline": "^5.5.2",
     "gatsby-plugin-react-helmet": "^5.5.0",
     "gatsby-plugin-sharp": "^4.5.2",
-    "gatsby-source-filesystem": "^4.5.2",
+    "gatsby-source-filesystem": "^4.7.0",
     "gatsby-source-graphql": "^4.5.2",
     "gatsby-transformer-sharp": "^4.5.0",
     "graphql": "^15.8.0",

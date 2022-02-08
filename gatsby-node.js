@@ -1,3 +1,48 @@
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
+
+exports.createResolvers = ({
+  actions,
+  cache,
+  createNodeId,
+  createResolvers,
+  store,
+  reporter,
+}) => {
+  const { createNode } = actions
+  createResolvers({
+    Vendure_Asset: {
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: source.preview,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+    Vendure_SearchResultAsset: {
+      imageFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: source.preview,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+  })
+}
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -48,7 +93,7 @@ exports.createPages = async ({ graphql, actions }) => {
   } while (skip + take < totalItems)
   for (const id of productIds) {
     const getProduct = await graphql(GET_PRODUCT, { id })
-    const product = getProduct.data.vendure.product;
+    const product = getProduct.data.vendure.product
     createPage({
       path: `/product/${product.slug}`,
       component: require.resolve("./src/templates/product.tsx"),
@@ -77,6 +122,11 @@ const GET_COLLECTIONS = /* GraphQL */ `
           featuredAsset {
             id
             preview
+            imageFile {
+              childImageSharp {
+                gatsbyImageData(width: 300, height: 300, quality: 85)
+              }
+            }
           }
           parent {
             id
@@ -97,6 +147,11 @@ const SEARCH_BY_COLLECTION = /* GraphQL */ `
           productName
           productAsset {
             preview
+            imageFile {
+              childImageSharp {
+                gatsbyImageData(width: 300, height: 300, quality: 70)
+              }
+            }
           }
           currencyCode
           priceWithTax {
@@ -145,10 +200,20 @@ const GET_PRODUCT = /* GraphQL */ `
         featuredAsset {
           id
           preview
+          imageFile {
+            childImageSharp {
+              gatsbyImageData(width: 800, quality: 85)
+            }
+          }
         }
         assets {
           id
           preview
+          imageFile {
+            childImageSharp {
+              gatsbyImageData(width: 800, quality: 85)
+            }
+          }
         }
         variants {
           id

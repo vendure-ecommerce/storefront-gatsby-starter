@@ -6,12 +6,14 @@ import Seo from "../components/seo"
 import { Breadcrumbs } from "../components/breadcrumbs"
 import { HeartIcon } from "@heroicons/react/outline"
 import { formatPrice } from "../utils/format-price"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
 const ProductPage = ({ pageContext: { product } }) => {
+  const image = getImage(product.featuredAsset.imageFile)
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0])
   function selectVariant(event: ChangeEvent<HTMLSelectElement>) {
     const selected = product.variants.find(
@@ -37,11 +39,13 @@ const ProductPage = ({ pageContext: { product } }) => {
           {/* Image gallery */}
           <div className="w-full max-w-2xl mx-auto sm:block lg:max-w-none">
             <span className="rounded-md overflow-hidden">
-              <img
-                src={product.featuredAsset.preview + "?preset=large"}
-                alt=""
-                className="w-full h-full object-center object-cover rounded-lg"
-              />
+              <div className="w-full h-full object-center object-cover rounded-lg">
+                <GatsbyImage
+                  image={image}
+                  alt={product.name}
+                  className="w-full h-full object-center object-cover rounded-lg"
+                />
+              </div>
             </span>
           </div>
 

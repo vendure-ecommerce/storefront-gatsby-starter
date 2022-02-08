@@ -4,7 +4,7 @@ import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import { CollectionCard } from '../components/collection-card';
+import { CollectionCard } from "../components/collection-card"
 
 const IndexPage = () => {
   const data = useStaticQuery(graphql`
@@ -24,13 +24,18 @@ const IndexPage = () => {
             featuredAsset {
               id
               preview
+              imageFile {
+                childImageSharp {
+                  gatsbyImageData(width: 300 height: 300 quality: 85)
+                }
+              }
             }
           }
         }
       }
     }
   `)
-  const heroBg = `${data.site.siteMetadata.apiHost}/assets/preview/40/abel-y-costa-716024-unsplash__preview.jpg`
+  const heroBg = `${data.site.siteMetadata.apiHost}/assets/preview/40/abel-y-costa-716024-unsplash__preview.jpg?preset=large`
   const collections = data.vendure.collections.items
   return (
     <Layout>
@@ -78,7 +83,9 @@ const IndexPage = () => {
           <div className="-my-2">
             <div className="box-content py-2 px-2 relative overflow-x-auto xl:overflow-visible">
               <div className="grid justify-items-center grid-cols-2 md:grid-cols-3 gap-y-8 gap-x-8 sm:px-6 lg:px-8 xl:relative xl:px-0 xl:space-x-0 xl:gap-x-8">
-                {collections.map(category => <CollectionCard collection={category}></CollectionCard>)}
+                {collections.map(category => (
+                  <CollectionCard collection={category}></CollectionCard>
+                ))}
               </div>
             </div>
           </div>

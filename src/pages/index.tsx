@@ -31,7 +31,7 @@ const IndexPage = () => {
     }
   `)
   const collections = data.vendure.collections.items
-  const headerImage = getImage(collections[0]?.featuredAsset.imageFile)
+  const headerImage = getImage(collections[0]?.featuredAsset.imageFile);
   return (
     <Layout>
       <Seo title="Home" />
@@ -47,6 +47,7 @@ const IndexPage = () => {
             />
           ) : (
             <img
+              className="absolute inset-0 w-full"
               src={collections[0]?.featuredAsset.preview + "?w=500"}
               alt="header"
             />
@@ -69,7 +70,7 @@ const IndexPage = () => {
             >
               Vendure
             </a>{" "}
-             {" "}&{" "}
+            &{" "}
             <a
               href="https://www.gatsbyjs.com/"
               className="text-purple-300 hover:text-purple-500"

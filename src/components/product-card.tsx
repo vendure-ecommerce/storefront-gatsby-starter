@@ -9,11 +9,16 @@ export function ProductCard({ item }: any) {
     <div key={item.slug} className="group relative">
       <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75">
         <div className="w-full h-full object-center object-cover lg:w-full lg:h-full">
-          <GatsbyImage
-            image={image}
-            alt={item.productName}
-            className="w-full h-full object-center object-cover"
-          />
+
+          {image ? (
+              <GatsbyImage
+                         image={image}
+                         alt={item.productName}
+                         className="w-full h-full object-center object-cover"
+                       />
+                    ) : (
+                      <img src={item.productAsset.preview + "?w=300&h=300"} />
+                    )}
         </div>
       </div>
       <div className="mt-4 flex justify-between">

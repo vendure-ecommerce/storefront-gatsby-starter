@@ -4,7 +4,7 @@ import * as React from "react"
 import { formatPrice } from "../utils/format-price"
 
 export function CollectionCard({ collection }: any) {
-  const image = getImage(collection.featuredAsset.imageFile);
+  const image = getImage(collection.featuredAsset.imageFile)
   return (
     <Link
       to={"/collection/" + collection.slug}
@@ -13,11 +13,15 @@ export function CollectionCard({ collection }: any) {
     >
       <span aria-hidden="true" className="">
         <div className="w-full h-full object-center object-cover">
-          <GatsbyImage
-            image={image}
-            alt={collection.name}
-            className="w-full h-full object-center object-cover"
-          />
+          {image ? (
+            <GatsbyImage
+              image={image}
+              alt={collection.name}
+              className="w-full h-full object-center object-cover"
+            />
+          ) : (
+            <img src={collection.featuredAsset.preview + "?w=300&h=300"} />
+          )}
         </div>
       </span>
       <span

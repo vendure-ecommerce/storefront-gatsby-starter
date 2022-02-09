@@ -19,8 +19,9 @@ const Search = ({ location }) => {
       <Seo title="Products" />
       <div className="max-w-2xl mx-auto px-4 lg:max-w-6xl">
         <h2 className="text-5xl font-light tracking-tight text-gray-900 my-8">
-          Results for "{query}"
+          {query ? (<span>Results for "{query}"</span>) : <span>Search</span>}
         </h2>
+
         <Breadcrumbs
           items={[{ name: "Search", slug: "search", id: "search" }]}
         ></Breadcrumbs>

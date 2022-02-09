@@ -12,10 +12,10 @@ export function Breadcrumbs({
       <ol role="list" className="flex items-center space-x-1 md:space-x-4">
         <li>
           <div>
-            <a href="#" className="text-gray-400 hover:text-gray-500">
+            <Link to="/" className="text-gray-400 hover:text-gray-500">
               <HomeIcon className="flex-shrink-0 h-5 w-5" aria-hidden="true" />
               <span className="sr-only">Home</span>
-            </a>
+            </Link>
           </div>
         </li>
         {items.filter(item => item.name !== '__root_collection__').map((item, index) => (

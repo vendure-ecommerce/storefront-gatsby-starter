@@ -39,11 +39,16 @@ const IndexPage = () => {
       <div className="relative">
         {/* Decorative image and overlay */}
         <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-          {headerImage && (
+          {headerImage ? (
             <GatsbyImage
               alt="header"
               image={headerImage}
               className="absolute inset-0"
+            />
+          ) : (
+            <img
+              src={collections[0]?.featuredAsset.preview + "?w=500"}
+              alt="header"
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-purple-800 to-indigo-900 mix-blend-multiply" />
@@ -57,21 +62,20 @@ const IndexPage = () => {
             Vendure Gatsby Starter
           </h1>
           <p className="mt-4 text-xl text-white">
-            A{" "}
+            A headless commerce storefront starter kit built with{" "}
             <a
               href="https://www.vendure.io"
               className="text-blue-300 hover:text-blue-500"
             >
               Vendure
             </a>{" "}
-            storefront starter built with{" "}
+             {" "}&{" "}
             <a
               href="https://www.gatsbyjs.com/"
               className="text-purple-300 hover:text-purple-500"
             >
               Gatsby
             </a>
-            .
           </p>
         </div>
       </div>

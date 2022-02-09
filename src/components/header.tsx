@@ -30,7 +30,7 @@ const Header = ({ siteTitle }) => {
         <h1 className="text-white w-10">
           <Link to="/">
             <StaticImage
-              src="../images/cube-logo-line-icon-nostroke.png"
+              src="../images/cube-logo-line-icon-nostroke-white.png"
               width={75}
               quality={95}
               placeholder={""}

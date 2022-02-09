@@ -26,8 +26,8 @@ const Layout = ({ children }) => {
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div>
         <main>{children}</main>
-        <footer className="py-24 border-t mt-6">
-          <div className="max-w-6xl mx-auto">
+        <footer className="py-24 px-2 border-t mt-6">
+          <div className="max-w-6xl mx-auto text-xs md:text-sm">
             <p>
               Built with <a href="https://www.vendure.io/" className='text-blue-500 hover:text-blue-700'>Vendure</a> &{" "}
               <a href="https://www.gatsbyjs.com" className='text-purple-500 hover:text-purple-700'>Gatsby</a>

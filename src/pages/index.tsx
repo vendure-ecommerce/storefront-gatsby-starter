@@ -9,11 +9,6 @@ import { CollectionCard } from "../components/collection-card"
 const IndexPage = () => {
   const data = useStaticQuery(graphql`
     query HomePageQuery {
-      site {
-        siteMetadata {
-          apiHost
-        }
-      }
       vendure {
         collections {
           items {

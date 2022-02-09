@@ -9,7 +9,7 @@ import * as React from "react"
 import { createClient, Provider } from "urql"
 
 const client = createClient({
-  url: process.env.VENDURE_SHOP_API_URL,
+  url: process.env.GATSBY_VENDURE_SHOP_API_URL,
 })
 
 

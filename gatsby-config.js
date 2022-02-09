@@ -46,7 +46,7 @@ module.exports = {
                 // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
                 fieldName: "vendure",
                 // Url to query from
-                url: process.env.VENDURE_SHOP_API_URL
+                url: process.env.GATSBY_VENDURE_SHOP_API_URL
             },
         },
     ],

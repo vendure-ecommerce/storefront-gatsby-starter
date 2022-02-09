@@ -16,6 +16,6 @@ A storefront for [Vendure](https://www.vendure.io/) built with [Gatsby](https://
 1. `npm install`
 2. Create an `.env.development` file defining the following environment variables:
    ```
-   VENDURE_SHOP_API_URL=http://localhost:3000/shop-api
+   GATSBY_VENDURE_SHOP_API_URL=https://readonlydemo.vendure.io/shop-api
    ```
 3. `npm run develop`

@@ -7,7 +7,6 @@ module.exports = {
         description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
         author: `@vendure_io`,
         siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
-        apiHost: process.env.VENDURE_SHOP_URL
     },
     plugins: [
         'gatsby-plugin-postcss',

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql, Link, useStaticQuery } from "gatsby"
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -31,6 +31,7 @@ const IndexPage = () => {
     }
   `)
   const collections = data.vendure.collections.items
+  const headerImage = getImage(collections[0]?.featuredAsset.imageFile)
   return (
     <Layout>
       <Seo title="Home" />
@@ -38,6 +39,13 @@ const IndexPage = () => {
       <div className="relative">
         {/* Decorative image and overlay */}
         <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
+          {headerImage && (
+            <GatsbyImage
+              alt="header"
+              image={headerImage}
+              className="absolute inset-0"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-purple-800 to-indigo-900 mix-blend-multiply" />
         </div>
         <div

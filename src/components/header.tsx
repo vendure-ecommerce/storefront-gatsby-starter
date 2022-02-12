@@ -25,7 +25,8 @@ const Header = ({ siteTitle, onCartClick }) => {
   const topLevelCollections = data.vendure.collections.items.filter(
     collection => collection.parent.name === "__root_collection__"
   )
-  const { data: { activeOrder } } = useCart()
+  const { data: cartData } = useCart()
+  const activeOrder = cartData?.activeOrder;
   const cartQuantity = activeOrder?.totalQuantity ?? 0;
   return (
     <header className="bg-gradient-to-r from-purple-600 to-purple-800 shadow-lg">

@@ -1,5 +1,9 @@
-export function formatPrice(value: number, currencyCode: string): string {
-  const formatter = Intl.NumberFormat(undefined, {
+export function formatPrice(
+  value: number,
+  currencyCode: string,
+  locale?: string
+): string {
+  const formatter = Intl.NumberFormat(locale, {
     style: "currency",
     currency: currencyCode,
   })

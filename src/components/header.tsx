@@ -4,7 +4,7 @@ import { SearchBar } from "./search-bar"
 import { ShoppingBagIcon } from "@heroicons/react/outline"
 import { StaticImage } from "gatsby-plugin-image"
 
-const Header = ({ siteTitle }) => {
+const Header = ({ siteTitle, onCartClick }) => {
   const data = useStaticQuery(graphql`
     query HeaderQuery {
       vendure {
@@ -48,7 +48,7 @@ const Header = ({ siteTitle }) => {
           <SearchBar></SearchBar>
         </div>
         <div className="">
-          <button className="w-9 h-9 bg-white bg-opacity-20 rounded text-white p-1">
+          <button className="w-9 h-9 bg-white bg-opacity-20 rounded text-white p-1" onClick={onCartClick}>
             <ShoppingBagIcon></ShoppingBagIcon>
           </button>
         </div>

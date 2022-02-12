@@ -7,6 +7,7 @@ import { Breadcrumbs } from "../components/breadcrumbs"
 import { HeartIcon } from "@heroicons/react/outline"
 import { formatPrice } from "../utils/format-price"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { useAddItem } from "../utils/hooks/use-add-item"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
@@ -14,6 +15,7 @@ function classNames(...classes) {
 
 const ProductPage = ({ pageContext: { product } }) => {
   const image = getImage(product.featuredAsset.imageFile)
+  const { data, error, fetching, addItem } = useAddItem()
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0])
   function selectVariant(event: ChangeEvent<HTMLSelectElement>) {
     const selected = product.variants.find(
@@ -22,6 +24,9 @@ const ProductPage = ({ pageContext: { product } }) => {
     if (selected) {
       setSelectedVariant(selected)
     }
+  }
+  const addToCart = () => {
+    addItem({ variantId: selectedVariant.id, quantity: 1 });
   }
   return (
     <Layout>
@@ -83,7 +88,7 @@ const ProductPage = ({ pageContext: { product } }) => {
               ""
             )}
 
-            <form className="mt-10 flex flex-col md:flex-row items-center">
+            <div className="mt-10 flex flex-col md:flex-row items-center">
               <p className="text-3xl text-gray-900 mr-4">
                 {formatPrice(
                   selectedVariant.priceWithTax,
@@ -93,7 +98,7 @@ const ProductPage = ({ pageContext: { product } }) => {
               <div className="flex sm:flex-col1 align-baseline">
                 <button
                   type="submit"
-                  disabled
+                  onClick={addToCart}
                   className="max-w-xs flex-1 bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 sm:w-full"
                 >
                   Add to cart
@@ -110,7 +115,7 @@ const ProductPage = ({ pageContext: { product } }) => {
                   <span className="sr-only">Add to favorites</span>
                 </button>
               </div>
-            </form>
+            </div>
 
             <section aria-labelledby="details-heading" className="mt-12">
               <h2 id="details-heading" className="sr-only">

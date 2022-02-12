@@ -14,8 +14,9 @@ exports.createResolvers = ({
       imageFile: {
         type: `File`,
         resolve(source, args, context, info) {
+          const url = new URL(source.preview).href;
           return createRemoteFileNode({
-            url: source.preview,
+            url,
             store,
             cache,
             createNode,

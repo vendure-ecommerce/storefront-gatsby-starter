@@ -8,7 +8,6 @@
     "@headlessui/react": "^1.4.3",
     "@heroicons/react": "^1.0.5",
     "@tailwindcss/forms": "^0.4.0",
-    "@urql/exchange-auth": "^0.1.7",
     "@urql/exchange-graphcache": "^4.3.6",
     "gatsby": "^4.5.4",
     "gatsby-plugin-gatsby-cloud": "^4.5.2",

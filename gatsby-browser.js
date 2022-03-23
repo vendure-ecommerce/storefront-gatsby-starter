@@ -3,54 +3,22 @@
  *
  * See: https://www.gatsbyjs.com/docs/browser-apis/
  */
-
 import "./src/styles/global.css"
 import * as React from "react"
-import { createClient, dedupExchange, fetchExchange, Provider } from "urql"
-import { cacheExchange } from "@urql/exchange-graphcache"
-import { makeOperation } from "@urql/core"
-import { authExchange } from "@urql/exchange-auth"
+import {createClient, dedupExchange, fetchExchange, Provider} from "urql"
+import {cacheExchange} from "@urql/exchange-graphcache"
+import {makeOperation} from "@urql/core"
 
 const AUTH_TOKEN_KEY = "auth_token"
 
-const getAuth = async ({ authState }) => {
-  if (!authState) {
+const client = createClient({
+  fetch: (input, init) => {
     const token = localStorage.getItem(AUTH_TOKEN_KEY)
     if (token) {
-      return { token }
+      const headers = input instanceof Request ? input.headers : init.headers;
+      headers['Authorization'] = `Bearer ${token}`;
     }
-    return null
-  }
-
-  return null
-}
-
-const addAuthToOperation = ({ authState, operation }) => {
-  if (!authState || !authState.token) {
-    return operation
-  }
-  const context = operation.context
-  const fetchOptions =
-    typeof context.fetchOptions === "function"
-      ? context.fetchOptions()
-      : context.fetchOptions || {}
-
-  return makeOperation(operation.kind, operation, {
-    ...context,
-    fetchOptions: {
-      ...fetchOptions,
-      headers: {
-        ...fetchOptions.headers,
-        Authorization: `Bearer ${authState.token}`,
-      },
-    },
-  })
-}
-
-const client = createClient({
-  url: process.env.GATSBY_VENDURE_SHOP_API_URL,
-  fetch: (...args) => {
-    return fetch(...args).then(response => {
+    return fetch(input, init).then(response => {
       const token = response.headers.get("vendure-auth-token")
       if (token) {
         localStorage.setItem(AUTH_TOKEN_KEY, token)
@@ -58,12 +26,23 @@ const client = createClient({
       return response
     })
   },
+  url: process.env.GATSBY_VENDURE_SHOP_API_URL,
   exchanges: [
     dedupExchange,
-    cacheExchange({}),
-    authExchange({
-      getAuth,
-      addAuthToOperation,
+    cacheExchange({
+      updates: {
+        Mutation: {
+          addItemToOrder: (parent, args, cache) => {
+            const activeOrder = cache.resolve('Query', 'activeOrder');
+            if (activeOrder == null) {
+              // The first time that the `addItemToOrder` mutation is called in a session,
+              // the `activeOrder` query needs to be manually updated to point to the newly-created
+              // Order type. From then on, the graphcache will handle keeping it up-to-date.
+              cache.link('Query', 'activeOrder', parent.addItemToOrder);
+            }
+          },
+        },
+      },
     }),
     fetchExchange,
   ],

@@ -1,23 +1,23 @@
-import { useQuery } from "urql";
-import { CartFragment } from '../fragments';
+import { useQuery } from "urql"
+import { CartFragment } from "../fragments"
 
-const ActiveOrderQuery = /*GraphQL*/`
+const ActiveOrderQuery = /*GraphQL*/ `
     query GetActiveOrder {
-        activeOrder {
-            ...Cart
-        }
         activeChannel {
             id
             currencyCode
         }
+        activeOrder {
+            ...Cart
+        }
     }
     ${CartFragment}
-`;
+`
 
 export function useCart() {
-    const [result, reexecuteQuery] = useQuery({
-       query: ActiveOrderQuery,
-     });
+  const [result, reexecuteQuery] = useQuery({
+    query: ActiveOrderQuery,
+  })
 
-     return result;
+  return result
 }
